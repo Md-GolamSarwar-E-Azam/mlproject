@@ -22,6 +22,9 @@ class DataTransformation:
         self.data_transformation_config = DataTransformationConfig()
 
     def get_data_transformer_object(self):
+        '''
+        This function is responsible for creating the data transformer object
+        '''
         try:
             numerical_columns = ['writing_score', 'reading_score'] 
             categorical_columns = ['gender', 
@@ -43,7 +46,6 @@ class DataTransformation:
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     ("one_hot_encoder", OneHotEncoder()),
-                    ("scaler", StandardScaler())
                 ]
             )
 
@@ -60,7 +62,7 @@ class DataTransformation:
             return preprocessor
             
         except Exception as e:
-            raise CustomExeption(e, sys)
+            raise CustomException(e, sys)
 
     def initiate_data_transformation(self,train_path, test_path):
         try: 
@@ -101,5 +103,5 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path,
             )    
-        except:
-            pass
+        except Exception as e:
+            raise CustomException(e, sys)
