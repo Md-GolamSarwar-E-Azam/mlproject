@@ -159,6 +159,7 @@ env.bak/
 venv.bak/
 venv
 artifacts
+catboost_info/
 
 # Spyder project settings
 .spyderproject
